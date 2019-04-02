@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "UIGifAnim.h"
+#include <windows.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////
 DECLARE_HANDLE(HZIP);	// An HZIP identifies a zip file that has been opened
@@ -320,8 +321,7 @@ namespace DuiLib
 		while (!pData)
 		{
 			//读不到图片, 则直接去读取bitmap.m_lpstr指向的路径
-			HANDLE hFile = ::CreateFile(pstrGifPath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, \
-				FILE_ATTRIBUTE_NORMAL, NULL);
+			HANDLE hFile = ::CreateFile(pstrGifPath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 			if( hFile == INVALID_HANDLE_VALUE ) break;
 			dwSize = ::GetFileSize(hFile, NULL);
 			if( dwSize == 0 ) break;
